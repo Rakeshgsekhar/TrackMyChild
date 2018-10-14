@@ -53,6 +53,7 @@ public class Display extends FragmentActivity implements OnMapReadyCallback {
         mMap = googleMap;
 
         mMap.setMaxZoomPreference(16);
+        MapUpdates();
         // Add a marker in Sydney and move the camera
        /* LatLng sydney = new LatLng(-34, 151);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
@@ -61,8 +62,8 @@ public class Display extends FragmentActivity implements OnMapReadyCallback {
 
     private void MapUpdates(){
 
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Childrens").child("+917994398779").child("Current");
-        ref.addChildEventListener(new ChildEventListener() {
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Childrens");
+        ref.child("+917994398779").child("Current").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
@@ -97,10 +98,12 @@ public class Display extends FragmentActivity implements OnMapReadyCallback {
     private void setMarker(DataSnapshot dataSnapshot){
 
         String key = dataSnapshot.getKey();
+        Log.i("data:",dataSnapshot.toString());
         HashMap<String,Object> value = (HashMap<String, Object>)dataSnapshot.getValue();
         double lat = Double.parseDouble(value.get("latitude").toString());
         double lng = Double.parseDouble(value.get("longitude").toString());
 
+        Log.i("locations : :",""+lat+"::"+lng);
 
         LatLng location = new LatLng(lat,lng);
 

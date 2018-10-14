@@ -12,6 +12,5 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         Intent intent = new Intent(Home.this,Display.class);
         startActivity(intent);
-        finish();
-    }
+        finish(); }
 }
