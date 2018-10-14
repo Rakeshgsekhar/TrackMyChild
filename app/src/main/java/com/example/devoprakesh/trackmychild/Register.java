@@ -113,7 +113,7 @@ public class Register extends AppCompatActivity {
         regpass.setVisibility(View.INVISIBLE);
         regconpass.setVisibility(View.INVISIBLE);
 
-        progressBar.setVisibility(View.VISIBLE);
+       // progressBar.setVisibility(View.VISIBLE);
 
     }
 
@@ -122,7 +122,7 @@ public class Register extends AppCompatActivity {
         regpass.setVisibility(View.VISIBLE);
         regconpass.setVisibility(View.VISIBLE);
 
-        progressBar.setVisibility(View.INVISIBLE);
+        //progressBar.setVisibility(View.INVISIBLE);
     }
 
 }
