@@ -18,8 +18,9 @@ public class Home extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
     private RecyclerView recyclerView;
-    private AlertDialog.Builder alertDialog;
-    private String childphnumber;
+    private AlertDialog.Builder alertDialogBuilder;
+    private String childphnumber,unicodepassstr;
+    private EditText childnumber,unicode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,21 +64,28 @@ public class Home extends AppCompatActivity {
 
 
         LayoutInflater inflater = LayoutInflater.from(Home.this);
-        View promtsnumber = inflater.inflate(R.layout.promtsview,null);
-        alertDialog = new AlertDialog.Builder(Home.this);
+        View promtsnumber = inflater.inflate(R.layout.promtsview,
+                null);
+        alertDialogBuilder = new AlertDialog.Builder(Home.this);
 
-        alertDialog.setView(promtsnumber);
+        alertDialogBuilder.setView(promtsnumber);
 
-        final EditText childnumber = promtsnumber
+         childnumber = promtsnumber
                 .findViewById(R.id.promptchildnumber);
+         unicode = promtsnumber.findViewById(R.id.unicodepass);
 
-        alertDialog.setCancelable(false)
+        alertDialogBuilder.setCancelable(false)
                 .setPositiveButton("OK", new DialogInterface
                         .OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface
                             , int i) {
                         childphnumber = childnumber.getText().toString();
+                        unicodepassstr = unicode.getText().toString();
+
+
+
+
                     }
                 })
                 .setNegativeButton("Cancel", new DialogInterface
