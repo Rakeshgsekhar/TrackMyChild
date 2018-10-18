@@ -47,6 +47,7 @@ public class Display extends FragmentActivity implements OnMapReadyCallback {
         MapUpdates();
         // Add a marker in Sydney and move the camera
 
+
     }
 
     private void MapUpdates(){
