@@ -10,17 +10,34 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Enter Unique Code"
+        android:text="Enter phone Number"
         android:textSize="30sp"
         android:padding="5dp"/>
 
     <EditText
-        android:id="@+id/promptunicode"
+        android:id="@+id/promptchildnumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Unique Code"
+        android:hint="+91-xxx-xxx-xxxx"
         android:textSize="25sp">
     <requestFocus/>
     </EditText>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="**Please enter country code!"
+        android:textStyle="bold">
+    <requestFocus/>
+    </TextView>
+    <EditText
+        android:id="@+id/unicodepass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="C-XXXXXX"
+        android:textSize="25sp">
+
+        <requestFocus/>
+    </EditText>
+
 
 </LinearLayout>
