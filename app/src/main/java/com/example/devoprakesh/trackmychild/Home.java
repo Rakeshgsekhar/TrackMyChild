@@ -41,9 +41,9 @@ public class Home extends AppCompatActivity {
 
         childrens = new ArrayList<>();
 
-        Intent intent = new Intent(Home.this,Display.class);
+        /*Intent intent = new Intent(Home.this,Display.class);
         startActivity(intent);
-        finish();
+        finish();*/
 
 
 
