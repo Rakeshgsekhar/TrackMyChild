@@ -132,7 +132,11 @@ public class Home extends AppCompatActivity {
                             , int i) {
                         dialogInterface.cancel();
                     }
+
                 });
+
+
+
 
 
     }
