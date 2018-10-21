@@ -88,34 +88,40 @@ public class Display extends FragmentActivity implements OnMapReadyCallback {
     private void setMarker(DataSnapshot dataSnapshot){
 
         String key = dataSnapshot.getKey();
+        Log.i("data:",key);
         Log.i("data:",dataSnapshot.getValue().toString());
-        HashMap<String, Object> value = (HashMap<String, Object>)dataSnapshot.getValue();
-        //value.put;
-        double lat = Double.parseDouble(value.get("latitude").toString());
-        double lng = Double.parseDouble(value.get("longitude").toString());
+        if(key.equals("Current")){
 
-        Log.i("locations : :",""+lat+"::"+lng);
+            HashMap<String, Object> value = (HashMap<String, Object>)dataSnapshot.getValue();
+            //value.put;
+            //dataSnapshot.get
+            double lat = Double.parseDouble(value.get("latitude").toString());
+            double lng = Double.parseDouble(value.get("longitude").toString());
 
-        LatLng location = new LatLng(lat,lng);
+            Log.i("locations : :",""+lat+"::"+lng);
 
-        if(!markerHashMap.containsKey(key)){
-            markerHashMap.put(key,mMap.addMarker(new MarkerOptions()
-                    .title(key).position(location)));
-        }else{
+            LatLng location = new LatLng(lat,lng);
 
-            markerHashMap.get(key).setPosition(location);
+            if(!markerHashMap.containsKey(key)){
+                markerHashMap.put(key,mMap.addMarker(new MarkerOptions()
+                        .title(key).position(location)));
+            }else{
+
+                markerHashMap.get(key).setPosition(location);
+            }
+
+            LatLngBounds.Builder builder = new LatLngBounds.Builder();
+
+            for(Marker marker: markerHashMap.values()){
+
+                builder.include(marker.getPosition());
+
+            }
+
+            mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(builder.build(),300));
+
+
         }
-
-        LatLngBounds.Builder builder = new LatLngBounds.Builder();
-
-        for(Marker marker: markerHashMap.values()){
-
-            builder.include(marker.getPosition());
-
-        }
-
-        mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(builder.build(),300));
-
 
     }
 }
