@@ -129,4 +129,12 @@ public class Display extends FragmentActivity implements OnMapReadyCallback {
         }
 
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(Display.this,Home.class);
+        startActivity(intent);
+        finish();
+    }
 }

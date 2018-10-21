@@ -18,6 +18,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -41,6 +43,9 @@ public class Home extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        sharedPreferences = getSharedPreferences("UserLoginDetails",MODE_PRIVATE);
+        editor = sharedPreferences.edit();
 
         childrens = new ArrayList<>();
         recyclerView = findViewById(R.id.tracklist);
@@ -74,6 +79,13 @@ public class Home extends AppCompatActivity {
                 AddChild();
                 break;
             case R.id.logout:
+                editor.clear();
+                editor.apply();
+                Intent intent = new Intent(Home.this,Register.class);
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                user.delete();
+                startActivity(intent);
+                finish();
                 break;
             case R.id.profileview:
                 break;
@@ -118,6 +130,7 @@ public class Home extends AppCompatActivity {
                                 Log.i("Unicode",unicodepassstr+"::"+data.getUnicode());
                                 if(unicodepassstr.equals(data.getUnicode())){
                                     childrens.add(data);
+
                                     adaptor.notifyDataSetChanged();
                                     dialogInterface.cancel();
 

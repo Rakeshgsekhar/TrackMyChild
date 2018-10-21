@@ -44,13 +44,15 @@ public class SplashScreen extends AppCompatActivity {
 
                     if(sharedPreferences.getString("UID",null)!= null){
 
+                        Intent intent = new Intent(SplashScreen.this,Home.class);
+                        startActivity(intent);
+                        finish();
+                    }else{
                         Intent intent = new Intent(SplashScreen.this,Register.class);
                         startActivity(intent);
                         finish();
                     }
-                    Intent intent = new Intent(SplashScreen.this,Register.class);
-                    startActivity(intent);
-                    finish();
+
                 }
             },5000);
 
