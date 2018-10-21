@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -33,6 +34,7 @@ public class Home extends AppCompatActivity {
     private String childphnumber,unicodepassstr;
     private EditText childnumber,unicode;
     List<UserData> childrens;
+    TrackListAdaptor adaptor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +42,17 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         childrens = new ArrayList<>();
+        recyclerView = findViewById(R.id.tracklist);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(Home.this);
+        recyclerView.setLayoutManager(layoutManager);
 
         /*Intent intent = new Intent(Home.this,Display.class);
         startActivity(intent);
         finish();*/
 
+
+        adaptor = new TrackListAdaptor(Home.this,childrens);
+        recyclerView.setAdapter(adaptor);
 
 
 
@@ -91,7 +99,7 @@ public class Home extends AppCompatActivity {
                 .setPositiveButton("OK", new DialogInterface
                         .OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface
+                    public void onClick(final DialogInterface dialogInterface
                             , int i) {
 
                         childphnumber = childnumber.getText().toString();
@@ -109,6 +117,8 @@ public class Home extends AppCompatActivity {
 
                                 if(unicodepassstr.equals(data.getUnicode())){
                                     childrens.add(data);
+                                    dialogInterface.cancel();
+
                                 }else{
 
                                     Toast.makeText(Home.this,"Invalid Code",Toast.LENGTH_LONG).show();
@@ -135,9 +145,14 @@ public class Home extends AppCompatActivity {
 
                 });
 
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
 
 
 
 
+
+        adaptor = new TrackListAdaptor(Home.this,childrens);
+        recyclerView.setAdapter(adaptor);
     }
 }

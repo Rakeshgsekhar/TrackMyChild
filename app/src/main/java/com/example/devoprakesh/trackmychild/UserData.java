@@ -2,7 +2,7 @@ package com.example.devoprakesh.trackmychild;
 
 public class UserData {
 
-    String emailid;
+    String email;
     String name;
     String unicode;
     String phonenumber;
@@ -12,18 +12,18 @@ public class UserData {
     public UserData(String name, String emailid, String unicode, String phonenumber) {
 
         this.name = name;
-        this.emailid = emailid;
+        this.email = emailid;
         this.unicode = unicode;
         this.phonenumber = phonenumber;
     }
 
 
     public String getEmailid() {
-        return emailid;
+        return email;
     }
 
     public void setEmailid(String emailid) {
-        this.emailid = emailid;
+        this.email = emailid;
     }
 
     public String getName() {
