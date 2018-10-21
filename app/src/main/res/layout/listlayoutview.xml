@@ -27,7 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:gravity="center">
-                <EditText
+                <TextView
                     android:id="@+id/numdisp"
                     android:hint="Child Number"
                     android:layout_width="match_parent"
