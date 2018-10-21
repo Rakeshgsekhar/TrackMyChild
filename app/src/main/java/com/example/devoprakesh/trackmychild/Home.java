@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -114,10 +115,12 @@ public class Home extends AppCompatActivity {
 
 
                                 UserData data = dataSnapshot.getValue(UserData.class);
-
+                                Log.i("Unicode",unicodepassstr+"::"+data.getUnicode());
                                 if(unicodepassstr.equals(data.getUnicode())){
                                     childrens.add(data);
+                                    adaptor.notifyDataSetChanged();
                                     dialogInterface.cancel();
+
 
                                 }else{
 
@@ -152,7 +155,8 @@ public class Home extends AppCompatActivity {
 
 
 
-        adaptor = new TrackListAdaptor(Home.this,childrens);
-        recyclerView.setAdapter(adaptor);
+
+        //adaptor = new TrackListAdaptor(Home.this,childrens);
+       // recyclerView.setAdapter(adaptor);
     }
 }

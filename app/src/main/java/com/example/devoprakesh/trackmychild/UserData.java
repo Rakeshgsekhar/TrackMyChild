@@ -17,12 +17,14 @@ public class UserData {
         this.phonenumber = phonenumber;
     }
 
+    public UserData() {
+    }
 
-    public String getEmailid() {
+    public String getEmail() {
         return email;
     }
 
-    public void setEmailid(String emailid) {
+    public void setEmail(String emailid) {
         this.email = emailid;
     }
 

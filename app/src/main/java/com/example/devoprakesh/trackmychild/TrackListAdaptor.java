@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +27,8 @@ public class TrackListAdaptor extends RecyclerView.Adapter<TrackListAdaptor.View
         View view;
         LayoutInflater inflater = (LayoutInflater)context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        Log.i("Count",""+childrens.size());
         if(childrens.isEmpty()){
 
             view = inflater.inflate(R.layout.nothingtodiplay,parent,false);
