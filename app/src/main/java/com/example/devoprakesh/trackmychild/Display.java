@@ -1,5 +1,6 @@
 package com.example.devoprakesh.trackmychild;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
@@ -27,6 +28,7 @@ public class Display extends FragmentActivity implements OnMapReadyCallback {
     private static final String TAG = Display.class.getSimpleName();
     private HashMap<String,Marker> markerHashMap = new HashMap<>();
     private GoogleMap mMap;
+    private String num;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,9 @@ public class Display extends FragmentActivity implements OnMapReadyCallback {
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        Intent intent = getIntent();
+        num = intent.getStringExtra("Number");
     }
 
 
@@ -53,7 +58,7 @@ public class Display extends FragmentActivity implements OnMapReadyCallback {
     private void MapUpdates(){
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Childrens");
-        ref.child("+917994398779").addChildEventListener(new ChildEventListener() {
+        ref.child(num).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 

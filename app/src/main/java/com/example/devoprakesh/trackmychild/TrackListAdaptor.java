@@ -1,6 +1,8 @@
 package com.example.devoprakesh.trackmychild;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,7 +42,7 @@ public class TrackListAdaptor extends RecyclerView.Adapter<TrackListAdaptor.View
 
         UserData data = childrens.get(position);
         ViewHolder hold = (ViewHolder)holder;
-        holder.phon.setText(data.getName());
+        hold.phon.setText(data.getName());
     }
 
     @Override
@@ -63,6 +65,12 @@ public class TrackListAdaptor extends RecyclerView.Adapter<TrackListAdaptor.View
 
         @Override
         public void onClick(View view) {
+
+            UserData data = childrens.get(getPosition());
+            Intent intent = new Intent(context,Display.class);
+            intent.putExtra("Number",data.getPhonenumber());
+            context.startActivity(intent);
+            ((Activity)context).finish();
 
         }
     }
