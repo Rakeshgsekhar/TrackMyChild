@@ -1,6 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp">
 
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/imgloco"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#266ee2">
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/ic_loc"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_toRightOf="@id/imgloco"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:gravity="center">
+                <EditText
+                    android:id="@+id/numdisp"
+                    android:hint="Child Number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/imgloco"/>
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
+    </android.support.v7.widget.CardView>
 </LinearLayout>
