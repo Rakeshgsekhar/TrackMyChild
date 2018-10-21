@@ -14,12 +14,16 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Home extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
@@ -28,12 +32,14 @@ public class Home extends AppCompatActivity {
     private AlertDialog.Builder alertDialogBuilder;
     private String childphnumber,unicodepassstr;
     private EditText childnumber,unicode;
+    List<UserData> childrens;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        childrens = new ArrayList<>();
 
         Intent intent = new Intent(Home.this,Display.class);
         startActivity(intent);
@@ -94,11 +100,19 @@ public class Home extends AppCompatActivity {
                         DatabaseReference databaseReference = FirebaseDatabase
                                 .getInstance().getReference("Users");
 
-                        databaseReference.child("").addValueEventListener(new ValueEventListener() {
+                        databaseReference.child(childphnumber).addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
 
+                                UserData data = dataSnapshot.getValue(UserData.class);
+
+                                if(unicodepassstr.equals(data.getUnicode())){
+                                    childrens.add(data);
+                                }else{
+
+                                    Toast.makeText(Home.this,"Invalid Code",Toast.LENGTH_LONG).show();
+                                }
                             }
 
                             @Override
