@@ -25,7 +25,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,16 +41,30 @@ public class Home extends AppCompatActivity {
     private EditText childnumber,unicode;
     List<UserData> childrens;
     TrackListAdaptor adaptor;
+    Gson gson;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        gson = new Gson();
         sharedPreferences = getSharedPreferences("UserLoginDetails",MODE_PRIVATE);
         editor = sharedPreferences.edit();
 
-        childrens = new ArrayList<>();
+        String json = sharedPreferences.getString("childlist","null");
+
+        if(json.equals("null")){
+
+            childrens = new ArrayList<>();
+        }else{
+
+            Type type = new TypeToken<ArrayList<UserData>>() {}.getType();
+            childrens = gson.fromJson(json,type);
+
+        }
+
+
         recyclerView = findViewById(R.id.tracklist);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(Home.this);
         recyclerView.setLayoutManager(layoutManager);
@@ -130,6 +147,11 @@ public class Home extends AppCompatActivity {
                                 Log.i("Unicode",unicodepassstr+"::"+data.getUnicode());
                                 if(unicodepassstr.equals(data.getUnicode())){
                                     childrens.add(data);
+
+                                    String json = gson.toJson(childrens);
+
+                                    editor.putString("childlist",json);
+                                    editor.apply();
 
                                     adaptor.notifyDataSetChanged();
                                     dialogInterface.cancel();
