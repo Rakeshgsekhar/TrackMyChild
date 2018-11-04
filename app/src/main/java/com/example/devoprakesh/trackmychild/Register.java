@@ -79,6 +79,7 @@ public class Register extends AppCompatActivity {
                                             editor.apply();
                                             Intent intent = new Intent(Register.this,Home.class);
                                             startActivity(intent);
+                                            finish();
 
 
                                         }else{
