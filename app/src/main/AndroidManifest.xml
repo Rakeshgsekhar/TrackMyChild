@@ -40,7 +40,8 @@
 
         <activity
             android:name=".Display"
-            android:label="@string/title_activity_display"></activity>
+            android:label="@string/title_activity_display" />
+        <activity android:name=".GeoFencing"></activity>
     </application>
 
 </manifest>
