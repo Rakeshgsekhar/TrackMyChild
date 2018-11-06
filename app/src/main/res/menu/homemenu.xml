@@ -7,4 +7,6 @@
         android:id="@+id/addchlid"/>
     <item android:title="Logout"
         android:id="@+id/logout"/>
+    <item android:title="Add GeoFence Loc"
+        android:id="@+id/addgeoloc"/>
 </menu>

@@ -112,6 +112,12 @@ public class Home extends AppCompatActivity {
                 break;
             case R.id.profileview:
                 break;
+
+            case R.id.addgeoloc:
+                Intent intent1 = new Intent(Home.this,GeoFencing.class);
+                startActivity(intent1);
+                finish();
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
