@@ -78,6 +78,7 @@ public class TrackSer extends Service {
 
 
                         Checkfence(dataSnapshot);
+
                     }
 
                     @Override
@@ -99,6 +100,8 @@ public class TrackSer extends Service {
 
         }else{
 
+            Log.i("Fence","No fence added");
+            onDestroy();
         }
     }
 
@@ -132,5 +135,10 @@ public class TrackSer extends Service {
             }
 
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
     }
 }
