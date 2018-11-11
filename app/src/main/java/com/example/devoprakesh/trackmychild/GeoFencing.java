@@ -92,7 +92,7 @@ public class GeoFencing extends AppCompatActivity {
             geofences.add(place);
             String json = gson.toJson(geofences);
 
-            editor.putString("childlist",json);
+            editor.putString("fencelist",json);
             editor.apply();
         }
     }
