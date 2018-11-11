@@ -14,6 +14,7 @@ import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,13 +28,15 @@ public class GeoFencing extends AppCompatActivity {
     SharedPreferences.Editor editor;
     private static final int PLACE_PICKER_REQUEST = 1;
     List<Place> geofences;
+    Gson gson;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_geo_fencing);
 
-       geofences = new ArrayList<Place>();
+        gson = new Gson();
+        geofences = new ArrayList<Place>();
         sharedPreferences = getSharedPreferences("UserLoginDetails",MODE_PRIVATE);
         editor = sharedPreferences.edit();
 
@@ -87,6 +90,10 @@ public class GeoFencing extends AppCompatActivity {
 
             String placeId = place.getId();
             geofences.add(place);
+            String json = gson.toJson(geofences);
+
+            editor.putString("childlist",json);
+            editor.apply();
         }
     }
 }

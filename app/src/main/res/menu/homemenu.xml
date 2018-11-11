@@ -9,4 +9,10 @@
         android:id="@+id/logout"/>
     <item android:title="Add GeoFence Loc"
         android:id="@+id/addgeoloc"/>
+    <item
+        android:title="Start Track Service"
+        android:id="@+id/strttrack"/>
+    <item
+        android:title="Stop Track Service"
+        android:id="@+id/stoptrack"/>
 </menu>

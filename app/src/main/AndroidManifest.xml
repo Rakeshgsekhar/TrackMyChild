@@ -41,7 +41,12 @@
         <activity
             android:name=".Display"
             android:label="@string/title_activity_display" />
-        <activity android:name=".GeoFencing"></activity>
+        <activity android:name=".GeoFencing" />
+
+        <service
+            android:name=".TrackSer"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>
