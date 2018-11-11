@@ -118,6 +118,13 @@ public class Home extends AppCompatActivity {
                 startActivity(intent1);
                 finish();
                 break;
+
+            case R.id.strttrack:
+                startService(new Intent(Home.this,TrackSer.class));
+                break;
+            case R.id.stoptrack:
+                stopService(new Intent(Home.this,TrackSer.class));
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
