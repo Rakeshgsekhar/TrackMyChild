@@ -140,5 +140,6 @@ public class TrackSer extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        Log.i("Service","stoped");
     }
 }

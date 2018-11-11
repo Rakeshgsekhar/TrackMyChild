@@ -116,7 +116,7 @@ public class Home extends AppCompatActivity {
             case R.id.addgeoloc:
                 Intent intent1 = new Intent(Home.this,GeoFencing.class);
                 startActivity(intent1);
-                finish();
+                //finish();
                 break;
 
             case R.id.strttrack:
