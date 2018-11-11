@@ -37,7 +37,7 @@ public class GeoFencing extends AppCompatActivity implements
     SharedPreferences.Editor editor;
     GoogleApiClient client;
     private static final int PLACE_PICKER_REQUEST = 1;
-    List<Place> geofences;
+   public static List<Place> geofences;
     Gson gson;
 
     @Override
@@ -66,12 +66,12 @@ public class GeoFencing extends AppCompatActivity implements
             }
         });
 
-        client = new GoogleApiClient.Builder(this)
+        /*client = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addApi(LocationServices.API)
                 .addApi(Places.GEO_DATA_API)
                 .enableAutoManage(this,this)
-                .build();
+                .build();*/
 
         addnewbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,8 +80,8 @@ public class GeoFencing extends AppCompatActivity implements
 
                 try {
                     PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
-                    Intent i = builder.build(GeoFencing.this);
-                    startActivityForResult(i,PLACE_PICKER_REQUEST);
+                    Intent intent = builder.build(GeoFencing.this);
+                    startActivityForResult(intent,PLACE_PICKER_REQUEST);
                 } catch (GooglePlayServicesRepairableException e) {
                     e.printStackTrace();
                 } catch (GooglePlayServicesNotAvailableException e) {
@@ -113,7 +113,7 @@ public class GeoFencing extends AppCompatActivity implements
             Toast.makeText(GeoFencing.this,""+json,Toast.LENGTH_LONG).show();
             editor.putString("fencelist",json);
             editor.apply();
-            editor.commit();
+            //editor.commit();
         }
     }
 

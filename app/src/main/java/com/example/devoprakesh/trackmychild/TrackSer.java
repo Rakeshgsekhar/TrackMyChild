@@ -7,6 +7,8 @@ import android.location.Location;
 import android.os.IBinder;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
 
 import com.google.android.gms.location.places.Place;
@@ -45,11 +47,15 @@ public class TrackSer extends Service {
     public void onCreate() {
         super.onCreate();
 
+        gson = new Gson();
         sharedPreferences = getSharedPreferences("UserLoginDetails",MODE_PRIVATE);
         child = sharedPreferences.getString("childlist","null");
         fence = sharedPreferences.getString("fencelist","null");
 
+        /*childrens  = new ArrayList<UserData>();
+        geofences = new ArrayList<Place>();*/
 
+        Log.i("List",child+"{}{}"+fence);
 
         if(!child.equals("null") && !fence.equals("null")){
 
@@ -59,25 +65,25 @@ public class TrackSer extends Service {
 
             childrens = gson.fromJson(child,type);
 
-            geofences = gson.fromJson(fence,type1);
+            geofences = GeoFencing.geofences;
 
 
 
             DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Childrens");
 
-            for(UserData user : childrens){
-                ref.child(user.getPhonenumber()).addChildEventListener(new ChildEventListener() {
+            for(final UserData userdata : childrens){
+                ref.child(userdata.getPhonenumber()).addChildEventListener(new ChildEventListener() {
                     @Override
                     public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
-                        Checkfence(dataSnapshot);
+                        Checkfence(userdata,dataSnapshot);
                     }
 
                     @Override
                     public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
 
-                        Checkfence(dataSnapshot);
+                        Checkfence(userdata,dataSnapshot);
 
                     }
 
@@ -105,7 +111,7 @@ public class TrackSer extends Service {
         }
     }
 
-    void Checkfence(DataSnapshot dataSnapshot){
+    void Checkfence(UserData userData,DataSnapshot dataSnapshot){
 
         for(Place p : geofences){
 
@@ -129,8 +135,18 @@ public class TrackSer extends Service {
 
                 Log.i("Result Distance",""+results[0]);
 
-                if(results[0]<50 && results[0]>(-50)){
+                if(results[0]<1000 && results[0]>(-1000)){
                     Log.i("Fenced","In Fenced Location");
+                    NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(),"1")
+                            .setSmallIcon(R.drawable.ic_loc_notiy)
+                            .setContentTitle("Location Changed")
+                            .setContentText(userData.getName()+"Changed Location and is now near"+p.getName())
+                            .setAutoCancel(true);
+
+
+                    NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat
+                            .from(getApplicationContext());
+                    notificationManagerCompat.notify(1,builder.build());
                 }
             }
 

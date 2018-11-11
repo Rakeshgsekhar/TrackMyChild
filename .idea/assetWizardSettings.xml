@@ -44,9 +44,9 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="outputName" value="ic_loc" />
+                                      <entry key="outputName" value="ic_loc_notiy" />
                                       <entry key="theme" value="CUSTOM" />
-                                      <entry key="themeColor" value="fffefd" />
+                                      <entry key="themeColor" value="ff3e2d" />
                                     </map>
                                   </option>
                                 </PersistentState>

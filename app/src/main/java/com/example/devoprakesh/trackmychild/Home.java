@@ -102,8 +102,8 @@ public class Home extends AppCompatActivity {
                 AddChild();
                 break;
             case R.id.logout:
-                //editor.clear();
-                //editor.apply();
+                editor.clear();
+                editor.apply();
                 Intent intent = new Intent(Home.this,Register.class);
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 user.delete();
