@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
@@ -51,14 +52,15 @@ public class GeoFencing extends AppCompatActivity implements
 
         addnewbtn = findViewById(R.id.addgeofence);
         enabler = findViewById(R.id.fencingenabler);
-        isEnabled = getPreferences(MODE_PRIVATE).getBoolean(getString(R.string.setting_enabled),false);
+        isEnabled = sharedPreferences.getBoolean("Enabler",false);
         enabler.setChecked(isEnabled);
         enabler.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
 
-                editor.putBoolean(getString(R.string.setting_enabled),b);
+                editor.putBoolean("Enabler",b);
                 isEnabled = b;
+                editor.apply();
                 editor.commit();
 
             }
@@ -108,8 +110,10 @@ public class GeoFencing extends AppCompatActivity implements
             geofences.add(place);
             String json = gson.toJson(geofences);
 
+            Toast.makeText(GeoFencing.this,""+json,Toast.LENGTH_LONG).show();
             editor.putString("fencelist",json);
             editor.apply();
+            editor.commit();
         }
     }
 
