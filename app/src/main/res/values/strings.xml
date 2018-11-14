@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TrackMyChild</string>
+    <string name="app_name">Child Logger</string>
     <string name="email_id">Email ID</string>
     <string name="title_activity_display">Map</string>
     <string name="setting_enabled" translatable="false">EnabledSetting</string>
