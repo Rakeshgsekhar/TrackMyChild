@@ -124,6 +124,7 @@ public class Home extends AppCompatActivity {
                 break;
             case R.id.stoptrack:
                 stopService(new Intent(Home.this,TrackSer.class));
+                editor.putString("fencelist","null");
                 break;
         }
         return super.onOptionsItemSelected(item);
