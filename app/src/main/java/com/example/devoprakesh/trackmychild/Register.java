@@ -50,7 +50,7 @@ public class Register extends AppCompatActivity {
 
                 email = regemail.getText().toString();
                 pass = regpass.getText().toString();
-                conpass = regpass.getText().toString();
+                conpass = regconpass.getText().toString();
 
                 MakeVisible();
 
@@ -61,7 +61,7 @@ public class Register extends AppCompatActivity {
                     MakeInVisible();
                 }else{
 
-                    if(pass.equals(conpass)){
+                    if(pass.equals(conpass) && (pass.length()>=8)){
 
 
                         mAuth.createUserWithEmailAndPassword(email,pass)
